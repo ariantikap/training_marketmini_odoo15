@@ -11,10 +11,10 @@ class kelompokbarang(models.Model):
         ('makananbasah', 'Makanan Basah'), ('makanankering', 'Makanan Kering'), ('minuman', 'Minuman')
     ], string='Nama Kelompok')
 
-    #kode_kelompok = fields.Char(string='Kode Kelompok')
+    kode_kelompok = fields.Char(string='Kode Kelompok')
     # Membuat COMPUTED FIELDS (sudah mengisi secara otomatis)
 
-    kode_kelompok = fields.Char(onchange='_compute_kode_kelompok', string='Kode Kelompok')
+    # kode_kelompok = fields.Char(onchange='_compute_kode_kelompok', string='Kode Kelompok')
 
     @api.onchange('name')
     def _compute_kode_kelompok(self):
