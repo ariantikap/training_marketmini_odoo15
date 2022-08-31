@@ -31,6 +31,7 @@
         'views/barang_view.xml',
         'views/person_view.xml',
         'views/kasir_view.xml',
+        'views/konsumen_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

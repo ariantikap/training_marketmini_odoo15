@@ -26,6 +26,9 @@
                     <field name="id_kasir"/>
                 </group>
             </xpath>
+            <xpath expr="//field[@name='alamat']" position="attributes">
+                <attribute name="string">address</attribute>
+            </xpath>
         </field>
     </record>
 
