@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- arimart.barang tree view -->
+    <record id="arimart_barang_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Barang</field>
+        <field name="model">arimart.barang</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="harga_beli"/>
+                <field name="harga_jual"/>
+                <field name="kelompokbarang_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- arimart.barang form view -->
+    <record id="arimart_barang_view_form" model="ir.ui.view">
+        <field name="name">Form Barang</field>
+        <field name="model">arimart.barang</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="harga_beli"/>
+                        <field name="harga_jual"/>
+                    </group>
+                    <group name="kelompokbarang" string="Kelompok Barang">
+                        <field name="kelompokbarang_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- arimart.barang action window -->
+    <record id="arimart_barang_action" model="ir.actions.act_window">
+        <field name="name">Daftar Barang</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">arimart.barang</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="arimart_barang_menu_act" 
+              name="Daftar Barang" 
+              parent="arimart_barang_menu_categ" 
+              action="arimart_barang_action" 
+              sequence="20"/>
+
+</odoo>

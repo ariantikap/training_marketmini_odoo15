@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_arimart_kelompokbarang,access.arimart.kelompokbarang,model_arimart_kelompokbarang,,1,1,1,1
+access_arimart_barang,access.arimart.barang,model_arimart_barang,,1,1,1,1
+
+access_arimart_person,access.arimart.person,model_arimart_person,,1,1,1,1
+access_arimart_kasir,access.arimart.kasir,model_arimart_kasir,,1,1,1,1
+access_arimart_cleaningservice,access.arimart.cleaningservice,model_arimart_cleaningservice,,1,1,1,1
