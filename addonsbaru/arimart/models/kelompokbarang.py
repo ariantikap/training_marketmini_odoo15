@@ -5,25 +5,31 @@ class kelompokbarang(models.Model):
     _name = 'arimart.kelompokbarang'
     _description = 'New Description'
 
-    #name = fields.Char(string='Nama Kelompok')
     # Membuat SELECTION FIELDS (dropdown fields)
     name = fields.Selection([
-        ('makananbasah', 'Makanan Basah'), ('makanankering', 'Makanan Kering'), ('minuman', 'Minuman')
+        ('makananbasah', 'Makanan Basah'), 
+        ('makanankering', 'Makanan Kering'), 
+        ('minuman', 'Minuman'),
+        ('bahanmakananbasah', 'Bahan Makanan Basah'), 
+        ('bahanmakanankering', 'Bahan Makanan Kering'), 
     ], string='Nama Kelompok')
 
-    kode_kelompok = fields.Char(string='Kode Kelompok')
     # Membuat COMPUTED FIELDS (sudah mengisi secara otomatis)
-
     # kode_kelompok = fields.Char(onchange='_compute_kode_kelompok', string='Kode Kelompok')
+    kode_kelompok = fields.Char(string='Kode Kelompok')
 
     @api.onchange('name')
-    def _compute_kode_kelompok(self):
+    def _onchange_kode_kelompok(self):
         if (self.name == 'makananbasah'):
             self.kode_kelompok = 'mak01'
         elif (self.name == 'makanankering'):
             self.kode_kelompok = 'mak02'
         elif (self.name == 'minuman'):
             self.kode_kelompok = 'min'
+        elif (self.name == 'bahanmakananbasah'):
+            self.kode_kelompok = 'bhnmkn01'
+        elif (self.name == 'bahanmakanankering'):
+            self.kode_kelompok = 'bhnmkn02'
 
     kode_rak = fields.Char(string='Kode Rak')
 

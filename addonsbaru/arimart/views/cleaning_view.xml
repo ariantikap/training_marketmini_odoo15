@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- arimart.cleaningservice inherit tree view -->
+    <record id="arimart.cleaningservice_view_tree_inherit" model="ir.ui.view">
+        <field name="name">Daftar Cleaning Service</field>
+        <field name="model">arimart.cleaningservice</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="arimart_person_view_tree"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="id_cln"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- arimart.cleaningservice inherit form view -->
+    <record id="arimart_cleaningservice_view_form_inherit" model="ir.ui.view">
+        <field name="name">Form Cleaning Service</field>
+        <field name="model">arimart.cleaningservice</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="arimart_person_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet//group[2]" position="after">
+                <group name="id" string="ID">
+                    <field name="id_cln"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='alamat']" position="attributes">
+                <attribute name="string">address</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- arimart.cleaningservice action window -->
+    <record id="arimart_cleaningservice_action" model="ir.actions.act_window">
+        <field name="name">Cleaning Service</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">arimart.cleaningservice</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="arimart_cleaningservice_menu_act" 
+              name="Cleaning Service" 
+              parent="arimart_pegawai_menu_categ" 
+              action="arimart_cleaningservice_action" 
+              sequence="20"/>
+
+</odoo>

@@ -3,12 +3,12 @@
 
     <!-- res.partner inherit tree view -->
     <record id="res_partner_konsumen_view_tree_inherit" model="ir.ui.view">
-        <field name="name">res.partner.inherit.view.tree</field>
+        <field name="name">Daftar Konsumen</field>
         <field name="model">res.partner</field>
-        <field name="mode">primary</field>
+        <field name="mode">extension</field>
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='function']" position="after">
+            <xpath expr="//field[@name='vat']" position="after">
                 <field name="poin"/>
             </xpath>
         </field>
@@ -16,21 +16,21 @@
 
     <!-- res.partner inherit form view -->
     <record id="res_partner_konsumen_view_form_inherit" model="ir.ui.view">
-        <field name="name">res.partner.inherit.view.form</field>
+        <field name="name">Form Konsumen</field>
         <field name="model">res.partner</field>
-        <field name="mode">primary</field>
+        <field name="mode">extension</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='function']" position="after">
+            <xpath expr="//field[@name='vat']" position="after">
                 <field name="poin"/>
-                <field name="level"/>
+                <field name="is_konsumen"/>
             </xpath>
         </field>
     </record>
 
     <!-- res.partner action window -->
     <record id="res_partner_konsumen_action" model="ir.actions.act_window">
-        <field name="name">res.partner.action</field>
+        <field name="name">Konsumen Membership</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form,kanban</field>
