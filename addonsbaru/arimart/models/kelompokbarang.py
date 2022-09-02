@@ -9,9 +9,7 @@ class kelompokbarang(models.Model):
     name = fields.Selection([
         ('makananbasah', 'Makanan Basah'), 
         ('makanankering', 'Makanan Kering'), 
-        ('minuman', 'Minuman'),
-        ('bahanmakananbasah', 'Bahan Makanan Basah'), 
-        ('bahanmakanankering', 'Bahan Makanan Kering'), 
+        ('minuman', 'Minuman'), 
     ], string='Nama Kelompok')
 
     # Membuat COMPUTED FIELDS (sudah mengisi secara otomatis)
@@ -26,10 +24,6 @@ class kelompokbarang(models.Model):
             self.kode_kelompok = 'mak02'
         elif (self.name == 'minuman'):
             self.kode_kelompok = 'min'
-        elif (self.name == 'bahanmakananbasah'):
-            self.kode_kelompok = 'bhnmkn01'
-        elif (self.name == 'bahanmakanankering'):
-            self.kode_kelompok = 'bhnmkn02'
 
     kode_rak = fields.Char(string='Kode Rak')
 

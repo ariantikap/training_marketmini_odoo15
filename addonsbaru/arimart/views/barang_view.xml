@@ -54,6 +54,6 @@
               name="Daftar Barang" 
               parent="arimart_barang_menu_categ" 
               action="arimart_barang_action" 
-              sequence="20"/>
+              sequence="10"/>
 
 </odoo>

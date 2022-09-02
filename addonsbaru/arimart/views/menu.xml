@@ -18,4 +18,10 @@
               parent="arimart_menu_root" 
               sequence="20"/>
 
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="arimart_transaksi_menu_categ" 
+              name="Transaksi" 
+              parent="arimart_menu_root" 
+              sequence="42"/>
+
 </odoo>
