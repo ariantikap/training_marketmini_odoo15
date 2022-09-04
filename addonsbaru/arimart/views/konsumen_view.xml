@@ -9,10 +9,10 @@
         <field name="inherit_id" ref="base.view_partner_tree"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
+                <field name="is_direksi"/>
+                <field name="is_konsumen"/>
                 <field name="poin"/>
                 <field name="level"/>
-                <!-- <field name="is_konsumen"/>
-                <field name="is_direksi"/> -->
             </xpath>
             <xpath expr="//field[@name='function']" position="attributes">
                 <attribute name="invisible">1</attribute>

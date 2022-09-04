@@ -1,3 +1,4 @@
+
 from odoo import api, fields, models
 
 class penjualan(models.Model):
@@ -18,6 +19,31 @@ class penjualan(models.Model):
         for rec in self:
             a = sum(self.env['arimart.detailpenjualan'].search([('penjualan_id','=',rec.id)]).mapped('subtotal'))
             rec.total_bayar = a
+    
+    @api.ondelete(at_uninstall=False)
+    def _ondelete_penjualan(self):
+        if self.detailpenjualan_ids:
+            a = []
+            for rec in self:
+                a = self.env['arimart.detailpenjualan'].search([('penjualan_id','=',rec.id)])
+                print(a)
+            for ob in a:
+                print(str(ob.barang_id.name) + ' ' + str(ob.qty))
+                ob.barang_id.stok += ob.qty
+    
+    # Metode Unlink untuk menghapus
+    # (saran untuk odoo 14, odoo 15 bisa pakai kedua nya ondelete/unlink)
+    # def unlink(self):
+    #     if self.detailpenjualan_ids:
+    #         a = []
+    #         for rec in self:
+    #             a = self.env['arimart.detailpenjualan'].search([('penjualan_id','=',rec.id)])
+    #             print(a)
+    #         for ob in a:
+    #             print(str(ob.barang_id.name) + ' ' + str(ob.qty))
+    #             ob.barang_id.stok += ob.qty
+    #     record = super(penjualan,self).unlink()
+
     
 class detailpenjualan(models.Model):
     _name = 'arimart.detailpenjualan'
@@ -42,6 +68,19 @@ class detailpenjualan(models.Model):
     def onchange_barang_id(self):
         if (self.barang_id.harga_jual):
             self.harga_satuan = self.barang_id.harga_jual 
+
+    # Metode Create untuk stok barang
+    @api.model
+    def create(self,vals):
+        record = super(detailpenjualan,self).create(vals)
+        # akan dieksekusi setelah klik save
+        if record.qty:
+            self.env['arimart.barang'].search([('id','=',record.barang_id.id)]).write({'stok' : record.barang_id.stok - record.qty})
+        return record
+        # atau memakai ini
+        # if record.qty:
+        #     record.barang_id.stok = record.barang_id.stok - record.qty
+
     
 
 

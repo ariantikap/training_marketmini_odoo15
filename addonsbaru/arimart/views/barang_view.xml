@@ -9,6 +9,7 @@
             <tree>
                 <!-- Add your fields here -->
                 <field name="name"/>
+                <field name="stok"/>
                 <field name="harga_beli"/>
                 <field name="harga_jual"/>
                 <field name="kelompokbarang_id"/>
@@ -27,6 +28,7 @@
                     <group>
                         <!-- Add your fields here -->
                         <field name="name"/>
+                        <field name="stok"/>
                         <field name="harga_beli"/>
                         <field name="harga_jual"/>
                     </group>

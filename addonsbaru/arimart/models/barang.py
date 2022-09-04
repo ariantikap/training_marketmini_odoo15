@@ -8,6 +8,7 @@ class barang(models.Model):
     name = fields.Char(string='Nama Barang')
     harga_beli = fields.Integer(string='Harga Modal',required=True)
     harga_jual = fields.Integer(string='Harga Jual',required=True)
+    stok = fields.Integer('Stok')
 
     # Membuat hubungan, kelompokbarang_id = foreign key, m2one ke kelompokbarang.py
     kelompokbarang_id = fields.Many2one(comodel_name='arimart.kelompokbarang',    
