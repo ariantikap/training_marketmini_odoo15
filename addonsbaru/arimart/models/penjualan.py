@@ -1,5 +1,7 @@
 
+# import re
 from odoo import api, fields, models
+from odoo.exceptions import UserError, ValidationError
 
 class penjualan(models.Model):
     _name = 'arimart.penjualan'
@@ -20,20 +22,8 @@ class penjualan(models.Model):
             a = sum(self.env['arimart.detailpenjualan'].search([('penjualan_id','=',rec.id)]).mapped('subtotal'))
             rec.total_bayar = a
     
-    @api.ondelete(at_uninstall=False)
-    def _ondelete_penjualan(self):
-        if self.detailpenjualan_ids:
-            a = []
-            for rec in self:
-                a = self.env['arimart.detailpenjualan'].search([('penjualan_id','=',rec.id)])
-                print(a)
-            for ob in a:
-                print(str(ob.barang_id.name) + ' ' + str(ob.qty))
-                ob.barang_id.stok += ob.qty
-    
-    # Metode Unlink untuk menghapus
-    # (saran untuk odoo 14, odoo 15 bisa pakai kedua nya ondelete/unlink)
-    # def unlink(self):
+    # @api.ondelete(at_uninstall=False)
+    # def _ondelete_penjualan(self):
     #     if self.detailpenjualan_ids:
     #         a = []
     #         for rec in self:
@@ -42,7 +32,48 @@ class penjualan(models.Model):
     #         for ob in a:
     #             print(str(ob.barang_id.name) + ' ' + str(ob.qty))
     #             ob.barang_id.stok += ob.qty
-    #     record = super(penjualan,self).unlink()
+    
+    # Metode Unlink untuk menghapus
+    # (saran untuk odoo 14, odoo 15 bisa pakai kedua nya ondelete/unlink)
+    def unlink(self):
+        if self.detailpenjualan_ids:
+            a = []
+            for rec in self:
+                a = self.env['arimart.detailpenjualan'].search([('penjualan_id','=',rec.id)])
+                print(a)
+            for ob in a:
+                print(str(ob.barang_id.name) + ' ' + str(ob.qty))
+                ob.barang_id.stok += ob.qty
+        record = super(penjualan,self).unlink()
+
+    #  Untuk meng EDIT STOK BARANG, yg di eksekusi ketika klik tombol edit
+    def write(self, vals):
+        # membalikan barang dulu
+        for rec in self:
+            a = self.env['arimart.detailpenjualan'].search([('penjualan_id','=',rec.id)])
+            print(a)
+            for data in a:
+                print(str(data.barang_id.name)+' '+str(data.qty)+' '+str(data.barang_id.stok))
+                data.barang_id.stok += data.qty
+        record = super(penjualan,self).write(vals)
+        # menambah barang / mengedit barang
+        for rec in self:
+            b = self.env['arimart.detailpenjualan'].search([('penjualan_id','=',rec.id)])
+            print(a)
+            print(b)
+            for databaru in b:
+                if databaru in a:
+                    print(str(databaru.barang_id.name)+' '+str(databaru.qty)+' '+str(databaru.barang_id.stok))
+                    databaru.barang_id.stok -= databaru.qty
+                else:
+                    pass
+        return record
+
+    # SQL CONSTRAINS
+    _sql_constraints = [
+        # ('constraint_uniq_name','sql_code','message'), STRUKTURNYA
+        ('no_nota_unik','unique (name)','No Nota gak boleh sama !!!'),
+    ]
 
     
 class detailpenjualan(models.Model):
@@ -80,7 +111,25 @@ class detailpenjualan(models.Model):
         # atau memakai ini
         # if record.qty:
         #     record.barang_id.stok = record.barang_id.stok - record.qty
+    
+    # Python CONSTRAINTS
+    @api.constrains('qty')
+    def check_quantity(self):
+        for rec in self:
+            if rec.qty <1:
+                raise ValidationError("Mau beli {} berapa banyak sih ?!".format(rec.barang_id.name))
+            elif (rec.barang_id.stok < rec.qty):
+                raise ValidationError("Stok {} ga cukup, hanya ada {}".format(rec.barang_id.name,rec.barang_id.stok))
 
+
+
+    
+    
+    
+
+    
+    
+    
     
 
 

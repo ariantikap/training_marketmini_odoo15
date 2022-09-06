@@ -12,10 +12,8 @@ class kelompokbarang(models.Model):
         ('minuman', 'Minuman'), 
     ], string='Nama Kelompok')
 
-    # Membuat COMPUTED FIELDS (sudah mengisi secara otomatis)
-    # kode_kelompok = fields.Char(onchange='_compute_kode_kelompok', string='Kode Kelompok')
     kode_kelompok = fields.Char(string='Kode Kelompok')
-
+    # Membuat COMPUTED FIELDS (sudah mengisi secara otomatis)
     @api.onchange('name')
     def _onchange_kode_kelompok(self):
         if (self.name == 'makananbasah'):
@@ -25,17 +23,17 @@ class kelompokbarang(models.Model):
         elif (self.name == 'minuman'):
             self.kode_kelompok = 'min'
 
+    
     kode_rak = fields.Char(string='Kode Rak')
-
     # Membuat hubungan o2m ke barang.py. barang_ids = foreign key
     # pake "s" karena isi dari barang itu banyak 
-
     barang_ids = fields.One2many(comodel_name='arimart.barang', 
                                 inverse_name='kelompokbarang_id', 
                                 string='Daftar Barang')
+
     # hitung isi fields
     jml_item = fields.Char(compute='_compute_jml_item', string='Jumlah Item')
-    
+
     @api.depends('barang_ids')
     def _compute_jml_item(self):
         for rec in self:
@@ -45,5 +43,7 @@ class kelompokbarang(models.Model):
             rec.daftar = a
     
     daftar = fields.Char(string='Daftar Isi')
+    
+    
     
     

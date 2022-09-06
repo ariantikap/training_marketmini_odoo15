@@ -1,21 +1,29 @@
-# -*- coding: utf-8 -*-
-# from odoo import http
+from odoo import http, models, fields
+from odoo.http import request
+import json
 
-
-# class Arimart(http.Controller):
-#     @http.route('/arimart/arimart', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
-
-#     @http.route('/arimart/arimart/objects', auth='public')
-#     def list(self, **kw):
-#         return http.request.render('arimart.listing', {
-#             'root': '/arimart/arimart',
-#             'objects': http.request.env['arimart.arimart'].search([]),
-#         })
-
-#     @http.route('/arimart/arimart/objects/<model("arimart.arimart"):obj>', auth='public')
-#     def object(self, obj, **kw):
-#         return http.request.render('arimart.object', {
-#             'object': obj
-#         })
+class arimart(http.Controller):
+    @http.route('/arimart/getbarang', auth='public', methods=['GET'])
+    def getbarang(self, **kw):
+        barang = request.env['arimart.barang'].search([])
+        isi = []
+        for brg in barang:
+            isi.append({
+                'nama_barang' : brg.name,
+                'harga_jual' : brg.harga_jual,
+                'stok' : brg.stok 
+            })
+        return json.dumps(isi)
+    
+    @http.route('/arimart/getsupplier', auth='public', methods=['GET'])
+    def getsupplier(self, **kw):
+        supplier = request.env['arimart.supplier'].search([])
+        sup = []
+        for s in supplier:
+            sup.append({
+                'nama_perusahaan' : s.name,
+                'alamat' : s.alamat,
+                'no_telepon' : s.no_telp,
+                'barang' : s.barang_id[0].name
+            })
+        return json.dumps(sup)
