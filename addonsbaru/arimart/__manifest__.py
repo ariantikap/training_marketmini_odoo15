@@ -37,6 +37,8 @@
         'views/direksi_view.xml',
         'views/penjualan_view.xml',
         'report/report.xml',
+        'report/print_faktur_penjualan.xml',
+        'wizzard/barangdatangwizzard_view.xml',
 
     ],
     # only loaded in demonstration mode

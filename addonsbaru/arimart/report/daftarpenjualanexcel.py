@@ -16,7 +16,7 @@ class PartnerXlsx(models.AbstractModel):
         sheet.write(2, 1, 'Nama Pembeli')
         sheet.write(2, 2, 'Tgl Transaksi')
         sheet.write(2, 3, 'Total Pembayaran')
-        sheet.write(2, 4, 'Daftar Barang')
+        # sheet.write(2, 4, 'Daftar Barang')
 
         row = 3
         col = 0
@@ -26,7 +26,7 @@ class PartnerXlsx(models.AbstractModel):
             sheet.write(row, col+1, obj.nama_pembeli)
             sheet.write(row, col+2, str(obj.tgl_penjualan))
             sheet.write(row, col+3, obj.total_bayar)
-            for xxx in obj.barang_id:
-                sheet.write(row, col+4, xxx.name)
-                col += 1
+            # for xxx in obj.barang_id:
+            #     sheet.write(row, col+4, xxx.name)
+            #     col += 1
             row += 1
