@@ -1,5 +1,4 @@
 
-# import re
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
@@ -9,7 +8,7 @@ class penjualan(models.Model):
 
     name = fields.Char(string='No. Nota')
     nama_pembeli = fields.Char(string='Nama Pembeli')
-    tgl_penjualan = fields.Datetime(string='Tgl Transaksi', default=fields.Datetime.now())
+    tgl_penjualan = fields.Datetime(string='Tgl Transaksi')
     total_bayar = fields.Integer(compute='_compute_totalbayar', string='Total Pembayaran')
     detailpenjualan_ids = fields.One2many(
         comodel_name='arimart.detailpenjualan', 

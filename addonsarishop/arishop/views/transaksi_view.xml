@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- arishop.transaksi tree view -->
+    <record id="arishop_transaksi_view_tree" model="ir.ui.view">
+        <field name="name">Transaksi</field>
+        <field name="model">arishop.transaksi</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="state == 'draft'"
+                  decoration-warning="state == 'confirm'"
+                  decoration-success="state == 'done'"
+                  decoration-danger="state == 'cancel'">
+                <field name="name"/>
+                <field name="nama_pembeli"/>
+                <field name="id_konsumen"/>
+                <field name="currency_id" invisible="1"/>
+                <field name="total_bayar" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="tgl_beli"/>
+                <field name="detailjual_ids"/>
+                <field name="state"
+                        decoration-muted="state == 'draft'"
+                        decoration-warning="state == 'confirm'"
+                        decoration-success="state == 'done'"
+                        decoration-danger="state == 'cancel'"
+                        widget="badge"
+                        />
+            </tree>
+        </field>
+    </record>
+
+    <!-- arishop.transaksi form view -->
+    <record id="arishop_transaksi_view_form" model="ir.ui.view">
+        <field name="name">Form Transaksi</field>
+        <field name="model">arishop.transaksi</field>
+        <field name="arch" type="xml">
+            <form string="Form Transaksi">
+                <!-- STATE untuk suatu record -->
+                <header>
+                    <!-- Button untuk mengubah state record -->
+                    <button name="action_confirm" type="object" string="Confirm" 
+                            class="btn btn-primary" states="draft" />
+                    <button name="action_done" type="object" string="Done"
+                            class="btn btn-primary" states="confirm" confirm="Yakin dengan pesanan anda?.  
+                            Jika sudah, klik OK"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            class="btn btn-danger" states="confirm" confirm="Anda yakin ingin cancel ?!" />
+                    <button name="action_draft" type="object" string="Back To Draft"
+                            class="btn btn-warning" states="cancel" confirm="Anda yakin ingin edit pesanan?!" />
+                    <!-- view state nya -->
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done,cancel"/>
+                </header>
+                <!-- attrs untuk menghindari peng-editan pada form -->
+                <sheet>
+                    <group>
+                        <field name="tgl_beli" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="name" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="nama_pembeli" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="id_konsumen" attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                        <field name="currency_id" invisible="0"/>
+                        <field name="total_bayar" widget="monetary" options="{'currency_field': 'currency_id'}" 
+                               attrs="{'readonly' : [('state', '!=', 'draft')]}"/>
+                    </group>
+                    <group name="daftarproduk" string="Daftar Produk">
+                        <field name="detailjual_ids" attrs="{'readonly' : [('state', '!=', 'draft')]}">
+                            <tree editable="bottom">
+                                <field name="produk_id"/>
+                                <field name="harga_satuan" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="qty"/>
+                                <field name="subtotal" widget="monetary" options="{'currency_field': 'currency_id'}" 
+                                       sum="Total"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- arishop.transaksi action window -->
+    <record id="arishop_transaksi_action" model="ir.actions.act_window">
+        <field name="name">Penjualan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">arishop.transaksi</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="transaksi_menu_act" 
+              name="Transaksi" 
+              parent="arishop_transaksi_menu_categ" 
+              action="arishop_transaksi_action" 
+              sequence="10"/>
+
+</odoo>

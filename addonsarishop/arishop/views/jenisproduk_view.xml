@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- arishop.jenisproduk tree view -->
+    <record id="arishop_jenisproduk_view_tree" model="ir.ui.view">
+        <field name="name">arishop.jenisproduk.view.tree</field>
+        <field name="model">arishop.jenisproduk</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="kode_jenis"/>
+                <field name="kode_rak"/>
+                <field name="jml_produk"/>
+                <field name="daftar"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- arishop.jenisproduk form view -->
+    <record id="arishop_jenisproduk_view_form" model="ir.ui.view">
+        <field name="name">arishop.jenisproduk.view.form</field>
+        <field name="model">arishop.jenisproduk</field>
+        <field name="arch" type="xml">
+            <form string="Jenis Produk">
+                <sheet>
+                    <group name="jenis" string="Jenis Produk">
+                        <field name="name"/>
+                        <field name="kode_jenis"/>
+                        <field name="jml_produk"/>
+                    </group>
+                    <group name="rak" string="Letak Produk">
+                        <field name="kode_rak"/>
+                        <field name="produk_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- arishop.jenisproduk action window -->
+    <record id="arishop_jenisproduk_action" model="ir.actions.act_window">
+        <field name="name">Jenis produk</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">arishop.jenisproduk</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="arishop_jenisproduk_menu_act" 
+              name="Jenis produk" 
+              parent="arishop_produk_menu_categ" 
+              action="arishop_jenisproduk_action" 
+              sequence="10"/>
+
+</odoo>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->
+    <menuitem id="arishop_menu_root" 
+              name="Ari Shop" 
+              sequence="10"/>
+    
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="arishop_produk_menu_categ" 
+              name="Produk" 
+              parent="arishop_menu_root" 
+              sequence="10"/>
+    
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="arishop_transaksi_menu_categ" 
+              name="Transaksi" 
+              parent="arishop_menu_root" 
+              sequence="20"/>
+    
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="arishop_data_menu_categ" 
+              name="Data" 
+              parent="arishop_menu_root" 
+              sequence="30"/>
+
+    <!-- This Menu Item Must have a parent -->
+    <menuitem id="arishop_pegawai_menu_categ" 
+              name="Pegawai" 
+              parent="arishop_menu_root" 
+              sequence="40"/>
+
+</odoo>

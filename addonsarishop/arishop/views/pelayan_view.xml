@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- arishop.pelayan inherit tree view -->
+    <record id="arishop_pelayan_inherit_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Pelayan</field>
+        <field name="model">arishop.pelayan</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="arishop_pegawai_view_tree"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="id_plyn"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- arishop.pelayan inherit form view -->
+    <record id="arishop_pelayan_inherit_view_form" model="ir.ui.view">
+        <field name="name">Form Pelayan</field>
+        <field name="model">arishop.pelayan</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="arishop_pegawai_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <xpath expr="//form//sheet//group[2]" position="after">
+                <group name="id" string="ID">
+                    <field name="id_plyn"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- arishop.pelayan action window -->
+    <record id="arishop_pelayan_action" model="ir.actions.act_window">
+        <field name="name">Pelayan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">arishop.pelayan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="arishop_pelayan_menu_act" 
+              name="Pelayan" 
+              parent="arishop_pegawai_menu_categ" 
+              action="arishop_pelayan_action" 
+              sequence="20"/>
+
+</odoo>

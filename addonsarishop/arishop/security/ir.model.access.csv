@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_arishop_produk,access.arishop.produk,model_arishop_produk,,1,1,1,1
+access_arishop_jenisproduk,access.arishop.jenisproduk,model_arishop_jenisproduk,,1,1,1,1
+access_arishop_pegawai,access.arishop.pegawai,model_arishop_pegawai,,1,1,1,1
+access_arishop_kasir,access.arishop.kasir,model_arishop_kasir,,1,1,1,1
+access_arishop_pelayan,access.arishop.pelayan,model_arishop_pelayan,,1,1,1,1
+access_arishop_supervisor,access.arishop.supervisor,model_arishop_supervisor,,1,1,1,1
+access_arishop_transaksi,access.arishop.transaksi,model_arishop_transaksi,,1,1,1,1
+access_arishop_detailjual,access.arishop.detailjual,model_arishop_detailjual,,1,1,1,1
+access_arishop_supplier,access.arishop.supplier,model_arishop_supplier,,1,1,1,1
+access_arishop_produkdatang,access.arishop.produkdatang,model_arishop_produkdatang,,1,1,1,1
+access_arishop_transaksireport,access.arishop.transaksireport,model_arishop_transaksireport,,1,1,1,1

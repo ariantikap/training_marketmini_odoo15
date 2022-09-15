@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- arishop.pegawai tree view -->
+    <record id="arishop_pegawai_view_tree" model="ir.ui.view">
+        <field name="name">Pegawai</field>
+        <field name="model">arishop.pegawai</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="alamat"/>
+                <field name="tgl_lahir"/>
+                <field name="tgl_awalkerja"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- arishop.pegawai form view -->
+    <record id="arishop_pegawai_view_form" model="ir.ui.view">
+        <field name="name">Pegawai</field>
+        <field name="model">arishop.pegawai</field>
+        <field name="arch" type="xml">
+            <form string="Nama">
+                <sheet>
+                    <group name="name" string="Nama">
+                        <field name="name"/>
+                    </group>
+                    <group name="data" string="Data">
+                        <field name="alamat"/>
+                        <field name="tgl_lahir"/>
+                        <field name="tgl_awalkerja"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

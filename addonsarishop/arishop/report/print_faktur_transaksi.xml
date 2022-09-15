@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_faktur_pdf" name="template_name">
+        <t t-call="web.html_container" >
+            <t t-call="web.internal_layout">
+               <div class='page'>
+                    <h2><b>Faktur Transaksi Internal</b></h2>
+                    <t t-foreach='docs' t-as='d'>
+                       
+                            <div class='row'>
+                                <div class='col-4'>No Nota       :</div>
+                                <div class='col-8'><span t-field='d.name'/></div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-4'>Nama Pembeli    :</div>
+                                <div class='col-8'><span t-field='d.nama_pembeli'/></div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-4'>Tgl. Transaksi   :</div>
+                                <div class='col-8'><span t-field='d.tgl_beli'/></div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-4'>Total Pembayaran :</div>
+                                <div class='col-8'><span t-field='d.total_bayar'/></div>
+                            </div>
+                            <div>
+                                <!-- looping untuk pdf -->
+                                <t t-foreach='d.detailjual_ids' t-as='ds'>
+                                    <div class='row'>
+                                        <div class='col-4'>Nama Produk : </div>
+                                        <div class='col-4'><span t-field='ds.produk_id.name'/></div>
+                                    </div>
+                                </t> 
+                            </div> 
+                            <div>======================================================</div>
+                    </t>
+               </div> 
+            </t>
+        </t>    
+    </template>
+</odoo>

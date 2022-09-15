@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- transaksireport_wizard form view -->
+    <record id="transaksireport_wizard_view_form" model="ir.ui.view">
+        <field name="name">Transaksi Report</field>
+        <field name="model">arishop.transaksireport</field>
+        <field name="arch" type="xml">
+            <form string="Transaksi Report">
+                <sheet>
+                    <group>
+                        <field name="konsumen_id"/>
+                    </group>
+                    <group>
+                        <field name="dari_tgl"/>
+                        <field name="ke_tgl"/>
+                    </group>
+                    <footer>
+                    <button name="button_transaksi_report" 
+                            type="object" string="Print PDF" 
+                            class="btn btn-primary"/>
+                    <button string="Cancel" 
+                            special="cancel" 
+                            class="btn btn-secondary"/>
+                </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- transaksireportwizard action window -->
+    <record id="transaksireport_wizard_action" model="ir.actions.act_window">
+        <field name="name">Penjualan Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">arishop.transaksireport</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="transaksireport_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="transaksireport_wizard_menu_act" 
+              name="Transaksi Report PDF" 
+              parent="arishop_transaksi_menu_categ" 
+              action="transaksireport_wizard_action" 
+              sequence="20"/>
+
+</odoo>

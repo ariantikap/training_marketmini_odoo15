@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="report_transaksi_xlsx" model="ir.actions.report">
+        <field name="name">Print Transaksi Excel</field>
+        <field name="model">arishop.transaksi</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">arishop.report_transaksi_xlsx</field>
+        <field name="report_file">arishop.report_transaksi_xlsx</field>
+        <field name="binding_model_id" ref="model_arishop_transaksi"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_supplier_xlsx" model="ir.actions.report">
+        <field name="name">Print Supplier Excel</field>
+        <field name="model">arishop.supplier</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">arishop.report_supplier_xlsx</field>
+        <field name="report_file">arishop.report_supplier_xlsx</field>
+        <field name="binding_model_id" ref="model_arishop_supplier"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_produk_xlsx" model="ir.actions.report">
+        <field name="name">Print Produk Excel</field>
+        <field name="model">arishop.produk</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">arishop.report_produk_xlsx</field>
+        <field name="report_file">arishop.report_produk_xlsx</field>
+        <field name="binding_model_id" ref="model_arishop_produk"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_jenisproduk_xlsx" model="ir.actions.report">
+        <field name="name">Print Jenis Produk Excel</field>
+        <field name="model">arishop.jenisproduk</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">arishop.report_jenisproduk_xlsx</field>
+        <field name="report_file">arishop.report_jenisproduk_xlsx</field>
+        <field name="binding_model_id" ref="model_arishop_jenisproduk"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_faktur_pdf" model="ir.actions.report">
+        <field name="name">Print Faktur PDF</field>
+        <field name="model">arishop.transaksi</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">arishop.report_faktur_pdf</field>
+        <field name="report_file">arishop.report_faktur_pdf</field>
+        <field name="binding_model_id" ref="model_arishop_transaksi"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="wizard_transaksireport_pdf" model="ir.actions.report">
+        <field name="name">Print Report PDF</field>
+        <field name="model">arishop.transaksireport</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">arishop.wizard_transaksireport_pdf_tmp</field>
+        <field name="report_file">arishop.wizard_transaksireport_pdf_tmp</field>
+        <field name="binding_model_id" ref="model_arishop_transaksireport"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    
+
+</odoo>

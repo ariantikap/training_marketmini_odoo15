@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- arishop.supervisor inherit tree view -->
+    <record id="arishop_supervisor_inherit_view_tree" model="ir.ui.view">
+        <field name="name">Daftar Supervisor</field>
+        <field name="model">arishop.supervisor</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="arishop_pegawai_view_tree"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="id_svisor"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- arishop.supervisor inherit form view -->
+    <record id="arishop_supervisor_inherit_view_form" model="ir.ui.view">
+        <field name="name">Form Supervisor</field>
+        <field name="model">arishop.supervisor</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="arishop_pegawai_view_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <xpath expr="//form//sheet//group[2]" position="after">
+                <group name="id" string="ID">
+                    <field name="id_svisor"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- arishop.supervisor action window -->
+    <record id="arishop_supervisor_action" model="ir.actions.act_window">
+        <field name="name">Supervisor</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">arishop.supervisor</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="arishop_supervisor_menu_act" 
+              name="Supervisor" 
+              parent="arishop_pegawai_menu_categ" 
+              action="arishop_supervisor_action" 
+              sequence="30"/>
+
+</odoo>
