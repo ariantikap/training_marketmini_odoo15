@@ -4,6 +4,7 @@ class PartnerXlsx(models.AbstractModel):
     _name = 'report.arimart.report_penjualan_xlsx'
     _inherit = 'report.report_xlsx.abstract'
 
+    # tanggal laporan
     tgl_lap = fields.Date.today()
 
     def generate_xlsx_report(self, workbook, data, penjualan):

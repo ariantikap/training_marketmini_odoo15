@@ -32,7 +32,7 @@ class penjualan(models.Model):
     #             print(str(ob.barang_id.name) + ' ' + str(ob.qty))
     #             ob.barang_id.stok += ob.qty
     
-    # Metode Unlink untuk menghapus
+    # Metode Unlink untuk DELETE
     # (saran untuk odoo 14, odoo 15 bisa pakai kedua nya ondelete/unlink)
     def unlink(self):
         if self.detailpenjualan_ids:
